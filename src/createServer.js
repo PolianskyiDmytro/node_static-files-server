@@ -42,7 +42,11 @@ function createServer() {
     let fileData;
 
     try {
-      fileData = fs.readFileSync(`./public/${relativePath}`);
+      if (relativePath === '') {
+        fileData = fs.readFileSync('./public/index.html');
+      } else {
+        fileData = fs.readFileSync(`./public/${relativePath}`);
+      }
     } catch (error) {
       res.statusCode = 404;
       res.setHeader('Content-Type', 'text/plain');
