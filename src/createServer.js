@@ -9,7 +9,7 @@ function createServer() {
   return http.createServer((req, res) => {
     const filePath = req.url;
 
-    if (filePath.includes('../')) {
+    if (filePath.includes('..')) {
       res.statusCode = 400;
       res.setHeader('Content-Type', 'text/plain');
       res.end('path should not contain ..');
@@ -50,7 +50,7 @@ function createServer() {
     } catch (error) {
       res.statusCode = 404;
       res.setHeader('Content-Type', 'text/plain');
-      res.end(error.message);
+      res.end('File not found');
 
       return;
     }
