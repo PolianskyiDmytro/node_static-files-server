@@ -7,7 +7,7 @@ function createServer() {
   /* Write your code here */
   // Return instance of http.Server class
   return http.createServer((req, res) => {
-    const filePath = req.url.pathname;
+    const filePath = req.url;
 
     if (filePath.includes('../')) {
       res.statusCode = 400;
@@ -31,7 +31,7 @@ function createServer() {
 
       return;
     } else if (!filePath.startsWith('/file/')) {
-      res.statusCode = 404;
+      res.statusCode = 400;
       res.setHeader('Content-Type', 'text/plain');
       res.end('path to file should start with /file/');
 
